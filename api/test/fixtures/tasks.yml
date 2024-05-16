@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  due_date: 2024-05-16 09:35:48
+  is_completed: false
+
+two:
+  name: MyText
+  due_date: 2024-05-16 09:35:48
+  is_completed: false
