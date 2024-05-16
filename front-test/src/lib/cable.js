@@ -4,6 +4,6 @@
 
 import { createConsumer } from '@rails/actioncable'
 
-const consumer = createConsumer('ws://localhost:3000/api/cable')
+const consumer = createConsumer('wss://todo.devartiral.com/api/cable')
 
 export default consumer
