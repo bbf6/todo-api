@@ -12,7 +12,8 @@ COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 RUN bundle install
 COPY . .
+RUN chmod +x run.sh
 
 FROM config AS ready
 
-CMD ['rails', 's', '-b', '0.0.0.0']
+CMD ["./run.sh"]
