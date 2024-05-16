@@ -1,0 +1,145 @@
+---
+openapi: 3.0.1
+info:
+  title: todo app api
+  version: v1
+paths:
+  "/api/tasks":
+    get:
+      summary: Retrieves all tasks
+      tags:
+      - Tasks
+      responses:
+        '200':
+          description: tasks found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    due_date:
+                      type: string
+                      format: date-time
+                    is_completed:
+                      type: boolean
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - name
+                  - is_completed
+                  - created_at
+                  - updated_at
+    post:
+      summary: Creates a task
+      tags:
+      - Tasks
+      parameters: []
+      responses:
+        '201':
+          description: task created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                due_date:
+                  type: string
+                  format: date-time
+              required:
+              - name
+  "/api/tasks/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    put:
+      summary: Updates a task
+      tags:
+      - Tasks
+      parameters: []
+      responses:
+        '200':
+          description: task updated
+        '404':
+          description: task not found
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                due_date:
+                  type: string
+                  format: date-time
+              required:
+              - name
+    delete:
+      summary: Deletes a task
+      tags:
+      - Tasks
+      responses:
+        '204':
+          description: task deleted
+        '404':
+          description: task not found
+  "/api/tasks/complete/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: completes a task
+      tags:
+      - Tasks
+      responses:
+        '200':
+          description: successful
+  "/api/tasks/undo_complete/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: undo the completion of a task
+      tags:
+      - Tasks
+      responses:
+        '200':
+          description: successful
+servers:
+- url: http://{defaultHost}:3000
+  variables:
+    defaultHost:
+      default: localhost
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: todo.devartiral.com
