@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  mount Rswag::Ui::Engine => '/api-docs'
-  mount Rswag::Api::Engine => '/api-docs'
-
   scope :api do
+    mount Rswag::Ui::Engine => '/docs'
+    mount Rswag::Api::Engine => '/docs'
+    mount ActionCable.server => '/cable'
+
     resources :tasks, except: :show do
       collection do
         post 'complete/:id' => 'tasks#complete'
