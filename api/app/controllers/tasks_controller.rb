@@ -21,13 +21,27 @@ class TasksController < ApplicationController
     @task.destroy
   end
 
+  def complete
+    return render json: nil if change_completion(true)
+    render json: @task.errors, status: :unprocessable_entity
+  end
+
+  def undo_complete
+    return render json: nil if change_completion(false)
+    render json: @task.errors, status: :unprocessable_entity
+  end
+
   private
+
+  def change_completion(value)
+    @task.update(is_completed: value)
+  end
 
   def set_task
     @task = Task.find(params[:id])
   end
 
   def task_params
-    params.require(:task).permit(:name, :due_date, :is_completed)
+    params.require(:task).permit(:name, :due_date)
   end
 end
