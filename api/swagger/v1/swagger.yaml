@@ -139,7 +139,7 @@ servers:
   variables:
     defaultHost:
       default: localhost
-- url: https://{defaultHost}
+- url: https://todo.devartiral.com
   variables:
     defaultHost:
       default: todo.devartiral.com

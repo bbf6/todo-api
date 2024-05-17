@@ -32,7 +32,7 @@ RSpec.configure do |config|
           }
         },
         {
-          url: 'https://{defaultHost}',
+          url: 'https://todo.devartiral.com',
           variables: {
             defaultHost: {
               default: 'todo.devartiral.com'
